@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+using Teacher.Helpers;
+using Teacher.Interface.Services;
+using Teacher.Models.Classes;
 
 namespace Teacher.Controllers
 {
@@ -7,8 +9,15 @@ namespace Teacher.Controllers
     [ApiController]
     public class ClassController : ControllerBase
     {
-        
-
-        
+        private readonly IClassService _classService;
+        public ClassController(IClassService classService)
+        {
+            _classService = classService;
+        }
+        [HttpPost("GetAll")]
+        public async Task<PaginatedList<ClassDTO>> GetAll(SearchDTO search)
+        {
+            return await _classService.GetAll(search);
+        }
     }
 }

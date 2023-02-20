@@ -1,9 +1,10 @@
 using Teacher.Context;
+using Teacher.Interface.Repositories;
+using Teacher.Interface.Services;
+using Teacher.Repositories;
+using Teacher.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
-//builder.Services.AddScoped<IAlunoService, AlunosService>();
-builder.Services.AddDbContext<AppDbContext>();
 
 // Add services to the container.
 
@@ -12,16 +13,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IClassService, ClassService>();
+builder.Services.AddScoped<IClassRepository, ClassRepository>();
+
+builder.Services.AddDbContext<AppDbContext>();
 
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.UseCors(options =>
 {
@@ -29,6 +27,14 @@ app.UseCors(options =>
     options.AllowAnyMethod();
     options.AllowAnyHeader();
 });
+
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseHttpsRedirection();
 

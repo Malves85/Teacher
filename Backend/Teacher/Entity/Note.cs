@@ -10,5 +10,7 @@ namespace Teacher.Entity
         public string Description { get; set; }
         [Required]
         public DateTime CreatedDate { get; set; }
+        public int StudentId { get; set; }
+        public Student Student { get; set; } = null!;
     }
 }
