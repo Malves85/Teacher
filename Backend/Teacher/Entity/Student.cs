@@ -17,10 +17,10 @@ namespace Teacher.Entity
         public int identification { get; set; }
         public string InitialLevel { get; set; }
         public string CurrentLevel { get; set; }
-        public int AssessmentId { get; set; }
-        public Assessment Assessment { get; set; } = null!;
-        public int NoteId { get; set; }
-        public Note Note { get; set; } = null!;
+        public ICollection<Assessment> Assessments { get; set; }
+        public ICollection<Note> Notes { get; set; }
+        public int ClassId { get; set; }
+        public Class Class { get; set; } = null!;
 
     }
 }
