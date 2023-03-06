@@ -8,11 +8,13 @@ namespace Teacher.Models.Classes
         public string Name { get; set; }
         public string Regime { get; set; }
         public string Course { get; set; }
-        public DateTime? InitialDate { get; set; }
-        public DateTime? LastDate { get; set; }
+        public DateTime InitialDate { get; set; }
+        public string dateInitialString{ get { return this.InitialDate.ToString("dd/MM/yyyy"); } }
+        public DateTime LastDate { get; set; }
+        public string dateLastString { get { return this.LastDate.ToString("dd/MM/yyyy"); } }
         public int WorkLoad { get; set; }
 
-        public ClassDTO()
+        public ClassDTO()  
         {
 
         }

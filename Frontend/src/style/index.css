@@ -1,0 +1,62 @@
+:root {
+
+  /*Colors */
+  --main-color: #0a5f82;
+  --second-color: #1b759b;
+  --third-color: #1b84b1;
+  --fourth-color: hsl(0, 0%, 93%);
+  --disabled-background-color: hsl(0, 0%, 90%);
+  --tabs-color: hsl(0, 0%, 93%);
+
+  /*Font Size and Family*/
+  --website-font-family: "Poppins";
+  --header-font-size: 1.45rem;
+  --button-font-size: 0.8rem;
+  --normal-text-font-size: 0.82rem;
+  --input-font-size: 0.8rem;
+  --input-label-font-size: 0.7rem;
+
+  /* Border */
+  --default-border: 0.5px solid gainsboro;
+
+  /* Paddings */
+  --navbar-padding: 0.5rem 1rem;
+  --default-border-radius: 0.7rem;
+  --default-input-padding: 0.5rem;
+  --default-button-padding: 0.4rem 0.4rem;
+  --table-cell-padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+
+  /* Buttons */
+  --button-main-color: #0a5f82;
+  --button-hover-color: #1b84b1;
+  --button-second-hover-color: hsl(240, 1%, 31%);
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: var(--normal-text-font-size);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+@media only screen and (max-width: 600px) {
+  :root {
+    --header-font-size: 1.5rem;
+    --normal-text-font-size: 0.88rem;
+    --table-cell-padding: 0.15rem 0.25rem 0.15rem 0.25rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+
+@media only screen and (max-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+
+@media only screen and (max-width: 1200px) {}
