@@ -1,0 +1,7 @@
+.input {
+    font-size: var(--input-font-size);
+    border-radius: var(--default-border-radius);
+    border: var(--default-border);
+    padding: var(--default-input-padding);
+    font-family: var(--website-font-family);
+}
