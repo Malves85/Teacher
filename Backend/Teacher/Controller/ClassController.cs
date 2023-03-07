@@ -19,5 +19,10 @@ namespace Teacher.Controllers
         {
             return await _classService.GetAll(search);
         }
+        [HttpPost("Create")]
+        public async Task<MessagingHelper<int>> Create(CreateClassDTO newClass)
+        {
+            return await _classService.Create(newClass);
+        }
     }
 }

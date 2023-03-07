@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using NLog.Fluent;
 using Teacher.Helpers;
 using Teacher.Interface.Repositories;
 using Teacher.Interface.Services;
 using Teacher.Models.Classes;
+using static Teacher.Models.Classes.CreateClassDTO;
 
 namespace Teacher.Services
 {
@@ -56,6 +58,38 @@ namespace Teacher.Services
                 response.Message = "Ocorreu um erro inesperado ao carregar as turmas";
                 response.Success = false;
             }
+            return response;
+        }
+
+        public async Task<MessagingHelper<int>> Create(CreateClassDTO createClass)
+        {
+            MessagingHelper<int> response = new();
+
+            try
+            {
+                var responseValidate = await new CreateClassDTOValidator().ValidateAsync(createClass);
+                if (responseValidate == null || responseValidate.IsValid == false)
+                {
+                    response.Message = responseValidate == null ? "Erro ao validar a informação para criar turma" : responseValidate.Errors.FirstOrDefault()!.ErrorMessage;
+                    response.Success = false;
+                    return response;
+                }
+
+                var newClass = createClass.ToEntity();
+                var clientInDB = await _classRepository.Create(newClass);
+
+                response.Success = true;
+                response.Obj = newClass.Id;
+                response.Message = "Turma criada com sucesso";
+
+
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = "Ocorreu um erro inesperado ao criar turma";
+            }
+
             return response;
         }
     }
