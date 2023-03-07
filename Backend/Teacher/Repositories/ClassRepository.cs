@@ -78,5 +78,12 @@ namespace Teacher.Repositories
 
             return response;
         }
+
+        public async Task<Class> Create(Class newClass)
+        {
+            await _context.Classes.AddAsync(newClass);
+            await _context.SaveChangesAsync();
+            return newClass;
+        }
     }
 }
