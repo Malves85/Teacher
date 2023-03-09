@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Classes from './pages/classes/Classes';
+import CreateClass from './pages/classes/CreateClass';
 import './style/App.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
                 {/* Rotas Gestão Classes */}
                 
                 <Route path='/classes' element={<Classes/>} />
+                <Route path='/createClass' element={<CreateClass/>} />
 
             </Routes>
         </BrowserRouter>
