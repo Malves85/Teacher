@@ -198,48 +198,83 @@ export default function Classes() {
     }, [reloadSearch]);
 
     return (
-        <div className="pageBody" style={{ width: "98%", margin:"10px" }}>
-            <Row>
-                <InputComponent xl={2} lg={3} md={5} sm={12} xs={12} 
-                    style={{ width: "100%" }}
-                    type={"text"}
-                    onEnter={onEnter}
-                    value={name}
-                    label={"Nome"}
-                    readOnly={false}
-                    onChange={(t: string) => setName(t)}
-                />
-            </Row>
+
+        <div className="pageContainer" style={{ width: "98%", margin:"10px" }}>
+
+            <div className="pageHeader">
+                <span className="pageTitle">
+                Turmas
+                </span>
+            </div>
 
             <Row>
-                <Col xl={3} lg={3} md={3} sm={12} xs={12}
-                    style={{ marginTop: "1em", display: "inline-flex", gap: "1rem" }}
-                >
-                    <ButtonComponent
-                        text={"procurar"}
-                        onClick={onButtonClick}
-                    />
-                    <ButtonComponent
-                        text={"remover"}
-                        onClick={onRemoveFiltersClick}
-                    />
+                <Col xl={2} lg={3} md={3} sm={12} xs={12} style={{ marginTop: "1em" }}>
+                    <button
+                        className="button"
+                        style={{ margin: 0, width: "80%" }}
+                        onClick={() => {
+                            navigate(`/createClass`);
+                        }}
+                    >
+                        Criar turma
+                    </button>
                 </Col>
             </Row>
-            <div className="pageComponent" style={{ width: "100%" }}>
-                <TableComponent
-                    goToPage={goToPage}
-                    loading={loading}
-                    pageCount={pageCount}
-                    columns={columns}
-                    manualPagination={true}
-                    fetchData={fetchData}
-                    pageSizes={pageSizes}
-                    initialPage={page}
-                    initialPageSize={pageSize}
-                    initialSortBy={initialSortBy}
-                    data={data}
-                    dontOrderFirstCollumn={true}
-                />
+
+            <div className="pageBody" >
+                <br />
+                <Row>
+                    <InputComponent xl={2} lg={3} md={5} sm={12} xs={12} 
+                        style={{ width: "100%" }}
+                        type={"text"}
+                        onEnter={onEnter}
+                        value={name}
+                        label={"Nome"}
+                        readOnly={false}
+                        onChange={(t: string) => setName(t)}
+                    />
+                    <InputComponent xl={2} lg={3} md={5} sm={12} xs={12}
+                        style={{ width: "100%" }}
+                        type={"text"}
+                        onEnter={onEnter}
+                        value={name}
+                        label={"Curso"}
+                        readOnly={false}
+                        onChange={(t: string) => setName(t)}
+                    />
+                </Row>
+
+                <Row>
+                    <Col xl={3} lg={3} md={3} sm={12} xs={12}
+                        style={{ marginTop: "1em", display: "inline-flex", gap: "1rem" }}
+                    >
+                        <ButtonComponent
+                            text={"Procurar"}
+                            onClick={onButtonClick}
+                        />
+                        <ButtonComponent
+                            text={"Limpar"}
+                            onClick={onRemoveFiltersClick}
+                        />
+                    </Col>
+                </Row>
+
+                <div className="pageComponent" style={{ width: "100%" }}>
+                    <TableComponent
+                        goToPage={goToPage}
+                        loading={loading}
+                        pageCount={pageCount}
+                        columns={columns}
+                        manualPagination={true}
+                        fetchData={fetchData}
+                        pageSizes={pageSizes}
+                        initialPage={page}
+                        initialPageSize={pageSize}
+                        initialSortBy={initialSortBy}
+                        data={data}
+                        dontOrderFirstCollumn={true}
+                    />
+                </div>
             </div>
         </div>
     )
