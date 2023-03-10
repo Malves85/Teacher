@@ -5,6 +5,7 @@ using Teacher.Interface.Repositories;
 using Teacher.Interface.Services;
 using Teacher.Models.Classes;
 using static Teacher.Models.Classes.CreateClassDTO;
+using static Teacher.Models.Classes.EditClassDTO;
 
 namespace Teacher.Services
 {
@@ -88,6 +89,62 @@ namespace Teacher.Services
             {
                 response.Success = false;
                 response.Message = "Ocorreu um erro inesperado ao criar turma";
+            }
+
+            return response;
+        }
+
+        public async Task<MessagingHelper<ClassDTO>> GetById(int id)
+        {
+            MessagingHelper<ClassDTO> response = new();
+            try
+            {
+                var classInfo = await _classRepository.GetById(id);
+
+                if (classInfo == null)
+                {
+                    response.Success = false;
+                    response.Message = "Não encontramos a turma com esse id.";
+                    return response;
+                }
+
+                response.Obj = new ClassDTO(classInfo);
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = "Ocorreu um erro inesperado ao obter a turma";
+            }
+            return response;
+        }
+
+        public async Task<MessagingHelper<EditClassDTO>> Edit(EditClassDTO editClass)
+        {
+            MessagingHelper<EditClassDTO> response = new();
+
+            try
+            {
+
+                var classInDb = await _classRepository.GetById(editClass.Id);
+
+                if (classInDb == null)
+                {
+                    response.Message = "Turma não encontrada";
+                    return response;
+                }
+                classInDb.Update(editClass);         
+
+                classInDb = await _classRepository.Update(classInDb);
+
+                response.Message = "Dados da turma atualizados com sucesso.";
+                response.Success = true;                 
+            }
+            catch (Exception ex)
+            {
+                MyLog.Logger(LogMessage.Error, $"Falhou ao atualizar turma: {ex.GetBaseException().Message}");
+                response.Success = false;
+                response.Message = "Ocorreu um erro inesperado ao atualizar os dados da turma.";
             }
 
             return response;

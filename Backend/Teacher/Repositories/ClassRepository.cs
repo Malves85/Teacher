@@ -85,5 +85,17 @@ namespace Teacher.Repositories
             await _context.SaveChangesAsync();
             return newClass;
         }
+        public async Task<Class> GetById(int id)
+        {
+            return await _context.Classes
+                .Where(t => t.Id == id)
+                .FirstOrDefaultAsync();
+        }
+        public async Task<Class> Update(Class editClass)
+        {
+            _context.Entry<Class>(editClass).CurrentValues.SetValues(editClass);
+            await _context.SaveChangesAsync();
+            return editClass;
+        }
     }
 }
