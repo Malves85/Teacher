@@ -7,5 +7,7 @@ namespace Teacher.Interface.Services
     {
         Task<PaginatedList<ClassDTO>> GetAll(SearchDTO search);
         Task<MessagingHelper<int>> Create(CreateClassDTO createClass);
+        Task<MessagingHelper<ClassDTO>> GetById(int id);
+        Task<MessagingHelper<EditClassDTO>> Edit(EditClassDTO editClass);
     }
 }

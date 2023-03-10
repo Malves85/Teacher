@@ -7,5 +7,7 @@ namespace Teacher.Interface.Repositories
     {
         Task<PaginatedList<Class>> GetAll(List<Parameter>? searchParameters, List<Parameter>? sortingParameters, int currentPage = 1, int pageSize = 5);
         Task<Class> Create(Class newClass);
+        Task<Class> GetById(int id);
+        Task<Class> Update(Class editClass);
     }
 }

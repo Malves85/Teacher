@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
+using Teacher.Models.Classes;
 
 namespace Teacher.Entity
 {
@@ -19,5 +20,17 @@ namespace Teacher.Entity
         public ICollection<Student> Students { get; set; }
         public ICollection<Session> Sessions { get; set; }
         public ICollection<History> Histories { get; set; }
+
+
+        public void Update(EditClassDTO editClass)
+        {
+            Name = editClass.Name;
+            Regime = editClass.Regime;
+            Course = editClass.Course;
+            InitialDate = editClass.InitialDate;
+            LastDate = editClass.LastDate;
+            WorkLoad = editClass.WorkLoad;
+
+        }
     }
 }

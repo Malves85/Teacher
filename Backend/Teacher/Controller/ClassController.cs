@@ -24,5 +24,15 @@ namespace Teacher.Controllers
         {
             return await _classService.Create(newClass);
         }
+        [HttpGet("{id}")]
+        public async Task<MessagingHelper<ClassDTO>> GetById(int id)
+        {
+            return await _classService.GetById(id);
+        }
+        [HttpPost("Edit")]
+        public async Task<MessagingHelper<EditClassDTO>> Edit(EditClassDTO editClass)
+        {
+            return await _classService.Edit(editClass);
+        }
     }
 }
