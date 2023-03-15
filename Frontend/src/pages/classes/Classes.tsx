@@ -64,7 +64,7 @@ export default function Classes() {
             {
                 Header: "",
                 accessor: " ",
-                Cell: (props: any) => OperationsCell(props.cell.row.original.id, "classes"),
+                Cell: (props: any) => OperationsCell(props.cell.row.original.id, "class"),
             },
             {
                 Header: "Nome" ,
