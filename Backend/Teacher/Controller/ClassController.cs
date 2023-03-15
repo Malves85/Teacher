@@ -3,7 +3,7 @@ using Teacher.Helpers;
 using Teacher.Interface.Services;
 using Teacher.Models.Classes;
 
-namespace Teacher.Controllers
+namespace Teacher.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
