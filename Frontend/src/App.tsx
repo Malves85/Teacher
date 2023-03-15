@@ -1,20 +1,13 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import Classes from './pages/classes/Classes';
 import CreateClass from './pages/classes/CreateClass';
+import EditClass from './pages/classes/EditClass';
 import './style/App.css';
 
 function App() {
   return (
     <div className="App">
-        <ToastContainer
-            bodyClassName="myToast"
-            position="bottom-right"
-            autoClose={5000}
-            pauseOnFocusLoss={false}
-            pauseOnHover={true}
-            hideProgressBar={true}
-        />
 
         <BrowserRouter>
             <Routes>
@@ -22,6 +15,7 @@ function App() {
                 
                 <Route path='/classes' element={<Classes/>} />
                 <Route path='/createClass' element={<CreateClass/>} />
+                <Route path='/class/:id' element={<EditClass/>} />
 
             </Routes>
         </BrowserRouter>
