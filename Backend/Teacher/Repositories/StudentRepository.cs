@@ -6,24 +6,24 @@ using Teacher.Interface.Repositories;
 
 namespace Teacher.Repositories
 {
-    public class ClassRepository : IClassRepository
+    public class StudentRepository : IStudentRepository
     {
         private readonly AppDbContext _context;
-        public ClassRepository(AppDbContext context) 
+        public StudentRepository(AppDbContext context)
         {
             _context = context;
         }
 
-        public async Task<PaginatedList<Class>> GetAll(List<Parameter>? searchParameters, List<Parameter>? sortingParameters, int currentPage = 1, int pageSize = 5)
+        public async Task<PaginatedList<Student>> GetAll(List<Parameter>? searchParameters, List<Parameter>? sortingParameters, int currentPage = 1, int pageSize = 5)
         {
-            var response = new PaginatedList<Class>();
+            var response = new PaginatedList<Student>();
 
             try
             {
-                searchParameters = Parameter.LoadFrom(new string[] { "name" }, searchParameters, null);
+                searchParameters = Parameter.LoadFrom(new string[] { "name"}, searchParameters, null);
 
 
-                IQueryable<Class> query = _context.Classes.AsQueryable();
+                IQueryable<Student> query = _context.Students.AsQueryable();
 
                 //Usamos os parâmetros de pesquisa para procurar os dados
                 foreach (var searchParameter in searchParameters)
@@ -70,32 +70,13 @@ namespace Teacher.Repositories
             }
             catch (Exception ex)
             {
-                MyLog.Logger(LogMessage.Error, $"ClassRepository.GetAll {ex.Message}");
+                MyLog.Logger(LogMessage.Error, $"StudentRepository.GetAll {ex.Message}");
 
                 response.Success = false;
                 response.Message = ex.Message;
             }
 
             return response;
-        }
-
-        public async Task<Class> Create(Class newClass)
-        {
-            await _context.Classes.AddAsync(newClass);
-            await _context.SaveChangesAsync();
-            return newClass;
-        }
-        public async Task<Class> GetById(int id)
-        {
-            return await _context.Classes
-                .Where(t => t.Id == id)
-                .FirstOrDefaultAsync();
-        }
-        public async Task<Class> Update(Class editClass)
-        {
-            _context.Entry<Class>(editClass).CurrentValues.SetValues(editClass);
-            await _context.SaveChangesAsync();
-            return editClass;
         }
     }
 }
